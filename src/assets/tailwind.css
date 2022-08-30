@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #85CBFF;
+  color: #444;
+}
+
+button {
+  text-decoration: none;
+  background-color: #5ae4ca;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  padding: 0.75rem 1.25rem;
+  mask-image: paint(squircle);
+  --squircle-radius: 20px;
+  --squircle-smooth: 1;
+}
+
+input {
+  background: paint(squircle);
+  --squircle-radius: 20px;
+  --squircle-smooth: 1;
+  --squircle-outline: 1px;
+  --squircle-color: #5ae4ca;
+}
