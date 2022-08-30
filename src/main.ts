@@ -1,14 +1,19 @@
-import { createApp } from 'vue'
+import { createApp, type ComponentOptionsBase, type ComponentPublicInstance } from 'vue'
 import App from './App.vue'
 import router from './router'
+import { auth } from './firebase/config'
 
 import './assets/tailwind.css'
+import { onAuthStateChanged } from '@firebase/auth';
 
-const app = createApp(App)
+let app: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>>
 
-app.use(router)
+onAuthStateChanged(auth, () => {
+  if (!app) {
+    app = createApp(App).use(router).mount('#app')
+  }
+})
 
-app.mount('#app')
 
 if ('paintWorklet' in CSS) {
   CSS.paintWorklet.addModule(
