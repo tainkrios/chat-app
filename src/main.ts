@@ -20,3 +20,8 @@ if ('paintWorklet' in CSS) {
     'https://www.unpkg.com/css-houdini-squircle@0.1.3/squircle.min.js'
   )
 }
+declare namespace CSS {
+  namespace paintWorklet {
+    export function addModule(url: string): void
+  }
+}
