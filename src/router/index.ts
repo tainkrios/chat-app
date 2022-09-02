@@ -3,10 +3,19 @@ import Chatroom from '@/views/Chatroom.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import Welcome from '../views/Welcome.vue'
 
-const requireAuth = (to: string, from: string, next) => {
+const requireAuth = (_to: any, _from: any, next: (arg0?: { name: string } | undefined) => void) => {
   let user = auth.currentUser
   if (!user) {
     next({ name: 'welcome' })
+  } else {
+    next()
+  }
+}
+
+const requireNoAuth = (to: any, from: any, next: (arg0?: { name: string } | undefined) => void) => {
+  let user = auth.currentUser
+  if (user) {
+    next({ name: 'chatroom' })
   } else {
     next()
   }
@@ -18,14 +27,15 @@ const router = createRouter({
     {
       path: '/',
       name: 'welcome',
-      component: Welcome
+      component: Welcome,
+      beforeEnter: requireNoAuth
     },
     {
       path: '/chatroom',
       name: 'chatroom',
       component: Chatroom,
       beforeEnter: requireAuth
-    },
+    }
   ]
 })
 
