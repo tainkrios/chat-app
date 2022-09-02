@@ -25,7 +25,6 @@ const handleSubmit = async () => {
     user: user.value?.displayName,
     createdAt: timestamp
   }
-  console.log(chat)
 
   await docRef(chat)
   if(!error.value) {

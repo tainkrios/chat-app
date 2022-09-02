@@ -14,7 +14,6 @@ const login = async (email: string, password: string) => {
     }
 
     error.value = null
-    console.log('res', res)
     return res
   } catch (err) {
     if (err instanceof Error) {
